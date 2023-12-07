@@ -14,6 +14,10 @@ async function handleLogin() {
   if (error.value?.data) {
     alert("Deu erro " + error.value?.data.message);
   }
+
+  if (data.value) {
+    navigateTo('/');
+  }
 }
 </script>
 

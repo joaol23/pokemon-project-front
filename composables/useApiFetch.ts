@@ -13,7 +13,7 @@ export async function useApiFetch<T>(
   }
 
   const auth = useAuthStore();
-  if (auth.isLoggedIn) {
+  if (auth.authToken) {
     headers["Authorization"] = `Bearer ${auth.authToken}`;
   }
 
