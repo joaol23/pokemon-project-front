@@ -4,8 +4,19 @@ module.exports = {
         // ...
         require('@tailwindcss/forms'),
     ],
+    theme: {
+        screens: {
+            'sm': { 'max': '639px' },
+            'md': { 'max': '767px' },
+            'lg': { 'max': '1023px' },
+            'xl': { 'max': '1279px' },
+            '2xl': { 'max': '1280px' },
+
+        }
+    },
     safelist: [
         'bg-black',
+        'text-gray-400',
         'bg-white',
         'bg-slate-50',
         'bg-slate-100',

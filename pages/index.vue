@@ -5,7 +5,6 @@
     </div>
     <PokemonsPokemonList :pokemons="pokemons" />
     <ListPaginationComponent
-      :on-change-pagination="loadDataPokemons"
       :last-page="lastPage"
       :pages="pages"
       :current-page="currentPage" />
