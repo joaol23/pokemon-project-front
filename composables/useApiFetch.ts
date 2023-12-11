@@ -24,7 +24,7 @@ export async function useApiFetch<T>(
     };
   }
 
-  return await useFetch(useRuntimeConfig().public.url_api + '/api' + path, {
+  return await useFetch(() => useRuntimeConfig().public.url_api + '/api' + path, {
     credentials: "include",
     watch: false,
     ...options,
