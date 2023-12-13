@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { object, string } from "yup";
+import { object, string, ref as refYup } from "yup";
 import { configure } from "vee-validate";
 const form = ref({
   email: "",
@@ -19,6 +19,9 @@ const schema = object({
   password: string()
     .required("Senha obrigatória!")
     .min(8, "Senha mínima de 8 caracteres!"),
+  password_confirm: string()
+    .required("Confirmação de senha obrigatória!")
+    .oneOf([refYup("password")], "Senhas não conferem!"),
 });
 
 const handleSubmit = (values: any, actions: any) => {
@@ -44,18 +47,19 @@ const handleSubmit = (values: any, actions: any) => {
               </div>
             </div>
             <div class="sm:col-span-3">
+              <FormVTextInput label="Senha" type="password" name="password" />
+            </div>
+            <div class="sm:col-span-3">
               <FormVTextInput
-                label="Password"
+                label="Confirmar Senha"
                 type="password"
-                name="password" />
+                name="password_confirm" />
             </div>
           </div>
         </div>
       </div>
       <template v-if="Object.keys(formErrors).length">
-        <p class="text-red-500">
-          Por favor, corrija os seguintes erros:
-        </p>
+        <p class="text-red-500">Por favor, corrija os seguintes erros:</p>
         <ul>
           <li
             v-for="(message, field) in formErrors"

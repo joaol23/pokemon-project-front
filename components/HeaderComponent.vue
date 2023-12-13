@@ -54,7 +54,7 @@ const handleLogout = async () => {
         <button v-if="auth.isLoggedIn">
           <NuxtLink
             class="transition-all text-white duration-200 hover:text-xl"
-            @click.prevent="handleLogout"
+            to="/area-treinador"
             >Área Treinador</NuxtLink
           >
         </button>

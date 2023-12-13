@@ -15,6 +15,9 @@ defineProps({
   },
 });
 
+const route = useRoute();
+
+
 defineEmits(["change-pagination"]);
 </script>
 <template>
@@ -22,7 +25,7 @@ defineEmits(["change-pagination"]);
   <nav class="flex justify-end py-4 mr-12">
     <div class="w-3/12 flex justify-end">
       <nuxt-link
-        :to="{ path: '/', query: { page: currentPage - 1 } }"
+        :to="{ path: route.path, query: { page: currentPage - 1 } }"
         v-if="currentPage > 1"
         class="px-4 py-2 mx-1 bg-blue-400 rounded-full">
         &laquo;
@@ -31,7 +34,7 @@ defineEmits(["change-pagination"]);
       <nuxt-link
         v-for="page in pages"
         :key="page.label"
-        :to="{ path: '/', query: { page: page.label } }">
+        :to="{ path: route.path, query: { page: page.label } }">
         <div
           :class="{ 'bg-blue-500 text-white': page.active }"
           class="px-4 py-2 mx-1 bg-blue-400 rounded-full"
@@ -43,7 +46,7 @@ defineEmits(["change-pagination"]);
       </nuxt-link>
 
       <nuxt-link
-        :to="{ path: '/', query: { page: currentPage + 1 } }"
+        :to="{ path: route.path, query: { page: currentPage + 1 } }"
         v-if="currentPage < lastPage"
         class="px-4 py-2 mx-1 bg-blue-400 rounded-full">
         &raquo;
