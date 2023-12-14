@@ -24,6 +24,10 @@ const schema = object({
     .oneOf([refYup("password")], "Senhas não conferem!"),
 });
 
+useSeoMeta({
+  title: 'Registro',
+})
+
 const handleSubmit = (values: any, actions: any) => {
   console.log(values);
   actions.resetForm();

@@ -19,6 +19,10 @@ async function handleLogin() {
     navigateTo('/');
   }
 }
+
+useSeoMeta({
+  title: 'Login',
+})
 </script>
 
 <template>

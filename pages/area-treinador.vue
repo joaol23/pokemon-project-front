@@ -19,6 +19,10 @@ const handleSelectPokemon = async (order: number) => {
   await navigateTo("/");
 };
 
+useSeoMeta({
+  title: 'Área do Treinador',
+})
+
 onMounted(loadDataPokemons);
 </script>
 
@@ -31,7 +35,7 @@ onMounted(loadDataPokemons);
           <img
             v-for="i in 6"
             src="../static/poke_ball_icon.png"
-            class="w-[100px] h-[100px] z-[5]"
+            class="w-[100px] h-[100px] z-[5] cursor-pointer"
             @click="handleSelectPokemon(i)"
             alt="pokebola" />
         </div>
@@ -42,7 +46,7 @@ onMounted(loadDataPokemons);
             :key="pokemon.id"
             :src="pokemon.image"
             @click="handleSelectPokemon(pokemon.pivot.order)"
-            class="w-[100px] h-[100px] z-10"
+            class="w-[100px] h-[100px] z-10 cursor-pointer"
             :class="{
               'row-start-2': pokemon.pivot.order > 3,
               ['col-start-' + pokemon.pivot.order]: pokemon.pivot.order <= 3,

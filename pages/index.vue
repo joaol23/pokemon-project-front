@@ -40,6 +40,11 @@ const loadDataPokemons = async () => {
   pages.value = data.value?.links || [];
 };
 
+useSeoMeta({
+  title: 'Lista Pokemons',
+})
+
+
 onMounted(loadDataPokemons);
 watch(
   () => route.query,
