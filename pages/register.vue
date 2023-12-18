@@ -1,11 +1,9 @@
 <script lang="ts" setup>
 import { object, string, ref as refYup } from "yup";
 import { configure } from "vee-validate";
-const form = ref({
-  email: "",
-  password: "",
-  password_confirm: "",
-});
+import { useAuthStore } from '../store/useAuthStore';
+
+const auth = useAuthStore();
 
 configure({
   validateOnBlur: true,
@@ -15,36 +13,54 @@ configure({
 });
 
 const schema = object({
+  name: string().required("Nome obrigatório!").max(200),
   email: string().required("Email obrigatório!").email("Email inválido!"),
   password: string()
     .required("Senha obrigatória!")
-    .min(8, "Senha mínima de 8 caracteres!"),
-  password_confirm: string()
+    .min(8, "Senha mínima de 8 caracteres!")
+    .max(64, "Senha máxima de 64 caracteres!"),
+    password_confirmation: string()
     .required("Confirmação de senha obrigatória!")
     .oneOf([refYup("password")], "Senhas não conferem!"),
 });
 
 useSeoMeta({
-  title: 'Registro',
-})
+  title: "Registro",
+});
 
-const handleSubmit = (values: any, actions: any) => {
-  console.log(values);
+const handleSubmit = async (
+  values: Record<string, any>,
+  actions: Record<string, any>
+) => {
+  const {data, error} = await useApiFetch<{data:{token:string}}>("/auth/register", {
+    method: "POST",
+    body: JSON.stringify(values),
+  });
+  if (error.value) {
+    return;
+  }
   actions.resetForm();
+  auth.authToken = data.value?.data?.token || null;
+  await auth.fetchUser();
+  navigateTo('/');
 };
 </script>
 
 <template>
-  <main class="flex justify-center items-center bg-gray-400 h-[94vh]">
+  <div class="flex justify-center items-center">
     <VeeForm
       :validation-schema="schema"
-      :initial-values="form"
       @submit="handleSubmit"
       v-slot="{ errors: formErrors }"
       class="mt-6 p-6 w-1/2 border-2 rounded-lg border-white bg-red-300">
       <div class="space-y-12">
         <div class="border-b border-gray-900/10 pb-12">
           <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+            <div class="sm:col-span-4">
+              <div class="mt-2">
+                <FormVTextInput label="Nome" type="text" name="name" />
+              </div>
+            </div>
             <div class="sm:col-span-4">
               <div class="mt-2">
                 <FormVTextInput label="Email" type="email" name="email" />
@@ -57,7 +73,7 @@ const handleSubmit = (values: any, actions: any) => {
               <FormVTextInput
                 label="Confirmar Senha"
                 type="password"
-                name="password_confirm" />
+                name="password_confirmation" />
             </div>
           </div>
         </div>
@@ -87,7 +103,7 @@ const handleSubmit = (values: any, actions: any) => {
         </button>
       </div>
     </VeeForm>
-  </main>
+  </div>
 </template>
 
 <style scoped></style>

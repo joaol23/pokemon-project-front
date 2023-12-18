@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LinksPaginationInterface } from '../../data/@types/PaginationInterface';
+import { LinksPaginationInterface } from "../../data/@types/PaginationInterface";
 defineProps({
   lastPage: {
     type: Number,
@@ -17,11 +17,9 @@ defineProps({
 
 const route = useRoute();
 
-
 defineEmits(["change-pagination"]);
 </script>
 <template>
-
   <nav class="flex justify-end py-4 mr-12">
     <div class="w-3/12 flex justify-end">
       <nuxt-link

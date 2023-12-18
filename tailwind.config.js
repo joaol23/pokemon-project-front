@@ -3,6 +3,7 @@ module.exports = {
     plugins: [
         // ...
         require('@tailwindcss/forms'),
+        require('tailwind-scrollbar'),
     ],
     theme: {
         screens: {
@@ -11,8 +12,7 @@ module.exports = {
             'lg': { 'max': '1023px' },
             'xl': { 'max': '1279px' },
             '2xl': { 'max': '1280px' },
-
-        }
+        },
     },
     content: [
         './pages/**/*.{vue}',

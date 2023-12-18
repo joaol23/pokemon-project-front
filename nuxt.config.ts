@@ -3,9 +3,9 @@ export default defineNuxtConfig({
   app: {
     head: {
       titleTemplate: "%s - Projeto Pokemon",
-      charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
-    }
+      charset: "utf-8",
+      viewport: "width=device-width, initial-scale=1",
+    },
   },
   devtools: { enabled: true },
   modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "@vee-validate/nuxt"],
@@ -14,7 +14,7 @@ export default defineNuxtConfig({
       url_api: process.env.URL_BASE_API,
     },
   },
-
+  debug: true,
   veeValidate: {
     // disable or enable auto imports
     autoImports: true,

@@ -1,14 +1,15 @@
 <template>
-  <div class="bg-gray-300">
-    <div class="flex justify-center">
-      <h1 class="text-4xl mt-4">Pokemons</h1>
-    </div>
-    <PokemonsPokemonList :pokemons="pokemons" />
-    <ListPaginationComponent
-      :last-page="lastPage"
-      :pages="pages"
-      :current-page="currentPage" />
+  <div class="flex justify-center">
+    <h1 class="text-4xl text-gray-200 mt-4">Pokemons</h1>
   </div>
+
+  <ModalModalComponent></ModalModalComponent>
+  <PokemonsPokemonList :pokemons="pokemons" v-if="pokemons.length" />
+  <div v-if="!pokemons.length" class="flex justify-center text-white">loading...</div>
+  <ListPaginationComponent
+    :last-page="lastPage"
+    :pages="pages"
+    :current-page="currentPage" />
 </template>
 
 <script lang="ts" setup>
@@ -41,9 +42,8 @@ const loadDataPokemons = async () => {
 };
 
 useSeoMeta({
-  title: 'Lista Pokemons',
-})
-
+  title: "Lista Pokemons",
+});
 
 onMounted(loadDataPokemons);
 watch(

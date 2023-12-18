@@ -2,7 +2,7 @@ import type { UserInteface } from "~/data/@types/UserInterface";
 
 export const useAuthStore = defineStore("auth", () => {
   const user = ref<UserInteface | null>();
-  const authToken = useCookie("auth_token", { default: () => null });
+  const authToken = useCookie<null|string>("auth_token", { default: () => null });
   const isLoggedIn = computed(() => !!user.value);
 
   async function login(credentials: { email: string; password: string }) {

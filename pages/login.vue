@@ -1,73 +1,87 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useAuthStore } from "../store/useAuthStore";
+import { configure } from "vee-validate";
+import { object, string } from "yup";
 
-const form = ref({
-  email: "teste@example.com",
-  password: "password",
-});
 const auth = useAuthStore();
 
-async function handleLogin() {
-  const {data, error} = await auth.login(form.value);
-  
+configure({
+  validateOnBlur: true,
+  validateOnChange: true,
+  validateOnInput: true,
+  validateOnModelUpdate: true,
+});
+
+const schema = object({
+  email: string().required("Email obrigatório!").email("Email inválido!"),
+  password: string()
+    .required("Senha obrigatória!")
+    .min(8, "Senha mínima de 8 caracteres!")
+    .max(64, "Senha máxima de 64 caracteres!"),
+});
+
+const handleSubmit = async (
+  values: Record<string, any>,
+  actions: Record<string, any>
+) => {
+  const { data, error } = await auth.login({
+    email: values.email,
+    password: values.password,
+  });
+
   if (error.value?.data) {
     alert("Deu erro " + error.value?.data.message);
   }
 
   if (data.value) {
-    navigateTo('/');
+    navigateTo("/");
   }
-}
+};
 
 useSeoMeta({
-  title: 'Login',
-})
+  title: "Login",
+});
 </script>
 
 <template>
-  <main class="flex justify-center items-center bg-gray-400 h-[94vh]">
-    <form
-      @submit.prevent="handleLogin"
+  <div class="flex justify-center items-center">
+    <VeeForm
+      :validation-schema="schema"
+      @submit="handleSubmit"
+      v-slot="{ errors: formErrors }"
       class="mt-6 p-6 w-1/2 border-2 rounded-lg border-white bg-red-300">
       <div class="space-y-12">
         <div class="border-b border-gray-900/10 pb-12">
           <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div class="sm:col-span-4">
-              <label
-                for="email"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Email</label
-              >
               <div class="mt-2">
-                <input
-                  id="email"
-                  name="email"
+                <FormVTextInput
+                  label="Email"
                   type="email"
-                  v-model="form.email"
-                  autocomplete="email"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                  name="email"
+                  autocomplete="email" />
               </div>
             </div>
             <div class="sm:col-span-3">
-              <label
-                for="password"
-                class="block text-sm font-medium leading-6 text-gray-900"
-                >Password</label
-              >
               <div class="mt-2">
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  v-model="form.password"
-                  autocomplete="given-name"
-                  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+                <FormVTextInput label="Senha" type="password" name="password" />
               </div>
             </div>
           </div>
         </div>
       </div>
+      <template v-if="Object.keys(formErrors).length">
+        <p class="text-red-500">Por favor, corrija os seguintes erros:</p>
+        <ul>
+          <li
+            v-for="(message, field) in formErrors"
+            :key="field"
+            class="help is-danger">
+            {{ message }}
+          </li>
+        </ul>
+      </template>
 
       <div class="mt-6 flex items-center justify-end gap-x-6">
         <button
@@ -81,8 +95,6 @@ useSeoMeta({
           Save
         </button>
       </div>
-    </form>
-  </main>
+    </VeeForm>
+  </div>
 </template>
-
-<style scoped></style>
