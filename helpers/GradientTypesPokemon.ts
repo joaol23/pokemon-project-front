@@ -22,6 +22,7 @@ const lightColor: ColorMap = {
   darkblue: "from-blue-800",
   grey: "from-gray-300",
   lightpink: "from-pink-200",
+  brown: "from-orange-900",
 };
 
 const darkColor: ColorMap = {
@@ -42,6 +43,7 @@ const darkColor: ColorMap = {
   darkblue: "to-blue-800",
   grey: "to-gray-500",
   lightpink: "to-pink-300",
+  brown: "to-orange-950",
 };
 
 export const getGradients = (types: TypeInterface[]): string => {

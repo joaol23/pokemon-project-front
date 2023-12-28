@@ -20,8 +20,8 @@ const route = useRoute();
 defineEmits(["change-pagination"]);
 </script>
 <template>
-  <nav class="flex justify-end py-4 mr-12">
-    <div class="w-3/12 flex justify-end">
+  <nav class="flex justify-center py-4 w-full">
+    <div class="w-3/4 flex 2xl:justify-center 2xl:overflow-x-auto xl:justify-center xl:overflow-x-auto overflow-x-scroll">
       <nuxt-link
         :to="{ path: route.path, query: { page: currentPage - 1 } }"
         v-if="currentPage > 1"
@@ -30,6 +30,7 @@ defineEmits(["change-pagination"]);
       </nuxt-link>
 
       <nuxt-link
+        v-if="pages.length > 3"
         v-for="page in pages"
         :key="page.label"
         :to="{ path: route.path, query: { page: page.label } }">

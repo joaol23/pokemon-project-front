@@ -22,7 +22,7 @@ const handleLogout = async () => {
             alt="" />
         </NuxtLink>
       </div>
-      <div class="w-1/2">
+      <div class="w-1/2 sm:hidden">
         <div class="w-full flex justify-evenly">
           <button>
             <NuxtLink

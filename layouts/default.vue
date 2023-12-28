@@ -31,4 +31,13 @@
 html {
     height: 100%;
 }
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
 </style>

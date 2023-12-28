@@ -21,6 +21,7 @@ export const getColorClass = (type: string): string => {
         darkblue: "bg-blue-800 text-white",
         grey: "bg-gray-500 text-white",
         lightpink: "bg-pink-200 text-white",
+        brown: "bg-orange-900 text-white",
     };
 
     return colorMap[type] || "bg-gray-500 text-white";
