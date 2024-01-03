@@ -1,75 +1,55 @@
-# Nuxt 3 Minimal Starter
+# Front end do projeto de Pokemons
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<p align="center">
+    <img alt="Vue.js" src="https://img.shields.io/badge/Vue.js-3.3-green" />
+    <img alt="Nuxt" src="https://img.shields.io/badge/Nuxt-3.8-darkgreen">
+</p>
 
-## Setup
+Um projeto que te da possibilidade de criar um
+treinador pokemon, e selecionar quais pokemons quer em seu time
+- [Projeto back-end](https://github.com/joaol23/laravel-pokemon-project)
 
-Make sure to install the dependencies:
 
-```bash
-# npm
-npm install
+## 🚀 Começando
 
-# pnpm
-pnpm install
+Essas instruções permitirão que você obtenha uma cópia do projeto em operação na sua máquina local para fins de
+desenvolvimento e teste.
 
-# yarn
-yarn install
+### 📋 Pré-requisitos
 
-# bun
-bun install
+De que coisas você precisa para instalar o software e como instalá-lo?
+
+```
+Node.js >= 20.0
+Yarn >= 1.22
 ```
 
-## Development Server
+### 🔧 Instalação
 
-Start the development server on `http://localhost:3000`:
+Uma série de exemplos passo-a-passo que informam o que você deve executar para ter um ambiente de desenvolvimento em
+execução.
 
-```bash
-# npm
-npm run dev
+Primeiro clone o projeto:
 
-# pnpm
-pnpm run dev
+```
+git clone https://github.com/joaol23/pokemon-project-front
+```
 
-# yarn
+Entre no projeto e instale as dependencias:
+
+```
+yarn
+```
+
+Agora rode o comando do yarn para ter o projeto rodando localmente
+
+```
 yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## 🛠️ Construído com
 
-Build the application for production:
+Mencione as ferramentas que você usou para criar seu projeto
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- [Vue](https://vuejs.org/) - Biblioteca front-end usada
+- [Nuxt](https://nuxt.com/) - Framework para Vue
