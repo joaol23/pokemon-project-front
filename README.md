@@ -53,3 +53,11 @@ Mencione as ferramentas que você usou para criar seu projeto
 
 - [Vue](https://vuejs.org/) - Biblioteca front-end usada
 - [Nuxt](https://nuxt.com/) - Framework para Vue
+
+## 🖼️ Imagens
+
+- Home
+![Imagem da home](docs/images/home.png)
+
+- Área do Treinador
+![Imagem da Área de treinador](docs/images/trainer-menu.png)
