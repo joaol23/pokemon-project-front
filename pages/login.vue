@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { ref } from "vue";
 import { useAuthStore } from "../store/useAuthStore";
 import { configure } from "vee-validate";
 import { object, string } from "yup";
@@ -22,8 +21,7 @@ const schema = object({
 });
 
 const handleSubmit = async (
-  values: Record<string, any>,
-  actions: Record<string, any>
+  values: Record<string, any>
 ) => {
   const { data, error } = await auth.login({
     email: values.email,

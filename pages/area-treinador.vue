@@ -55,7 +55,7 @@ onMounted(loadDataPokemons);
             ['col-start-' + (pokemon.pivot.order - 3)]: pokemon.pivot.order > 3,
           }">
           <div
-            class="border opacity-90 hover:opacity-100 border-red-500 bg-red-500 absolute right-0 rounded-full text-sm w-[20px] h-[20px] flex items-center justify-center"
+            class="border opacity-90 hover:opacity-100 border-purple-800 bg-purple-800 absolute right-0 rounded-full text-sm w-[20px] h-[20px] flex items-center justify-center"
             @click="removePokemon(pokemon.pivot.order)">
             X
           </div>
